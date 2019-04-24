@@ -103,6 +103,17 @@ for (let i=0; i<customAttr.length; i++){
 // 	"Are you sure CSS is one of your skills?"
 // NOTE: no alert should appear when user deselects a skill.
 
+// const skill = document.getElementsByName('skills');
+// skill = addEventListener("change", ()=> {
+
+//     console.log(skill.value);
+
+// });
+
+
+    // skill[0].addEventListener("change", (event) => {
+    // alert(`Are you sure ${skill[0].value} is one of your skills?`);
+    // });
 
 // 8. Favorite Color Event
 // NOTE: Write unobtrusive Javascript
@@ -117,12 +128,9 @@ for (let i=0; i<customAttr.length; i++){
 
 
     let colors = document.getElementsByName("favoriteColor");
-    //colors = document.addEventListener
     let oldColor = null;
     console.log(colors);
     for (let i=0; i<colors.length; i++){
-        // if(colors[i].checked)
-        // {
             
             colors[i].addEventListener("click", (event) => {
                 if(oldColor === null){
@@ -133,24 +141,39 @@ for (let i=0; i<customAttr.length; i++){
                 }else{
                     alert(`So you like ${colors[i].value} more than ${oldColor}`);
                      console.log(`So you like ${colors[i].value} more than ${oldColor}`);
+                     
                 }
-
-
+                let c = colors[i].value;
+                console.log(c);
+                colors.style.backgroundColor = c;
             });
             
         }
-    // }
     
-
-    // function favColor()
-    // {
-
 
 // 9. Show/Hide Event
 // NOTE: Write unobtrusive Javascript
 // When user hovers over an employees name:
 // 	Hide the name if shown.
 // 	Show the name if hidden.
+let employee = document.getElementsByClassName("empName");
+for(let i = 0; i<employee.length; i++) {
+        
+
+employee[i].addEventListener("mouseover", ()=> {
+    
+    console.log(employee[i].textContent);
+    employee[i].style.display = "none";
+
+});
+
+employee[i].addEventListener("mouseout", ()=> {
+        
+    employee[i].style.display="block";
+    });   
+
+}
+
 
 
 // 10. Current Time
@@ -158,14 +181,34 @@ for (let i=0; i<customAttr.length; i++){
 // 	<h5 id="currentTime"></h5>
 // Show the current time in this element in this format: 9:05:23 AM
 // The time should be accurate to the second without having to reload the page.
-
+let date = new Date();
+let hour = date.getHours();
+let minutes = date.getMinutes();
+let seconds = date.getSeconds();
+let currentTime = document.getElementById("currentTime");
+let time = hour + ":" + minutes + ":" + seconds; 
+currentTime.textContent = (time);
 
 // 11. Delay
 // Regarding this element:
 // 	<p id="helloWorld">Hello, World!</p>
 // Three seconds after a user clicks on this element, change the text to a random color.
 
+let helloWorld = document.getElementById("helloWorld");
+helloWorld.addEventListener("click", function textColor() {
+    let randColor= Math.floor(Math.random()*16777215).toString(16);
+    randColor = "#"+randColor;
+    console.log(randColor);
+        helloWorld.style.color = randColor;
+        //textColor.setTimeOut(textColor,3000);
+    // textColor.setTimeout(() => {
+        
+    // },  3000);
+})
+//.delay(3000);
+
 // 12. Walk the DOM
 // Define function walkTheDOM(node, func)
 // This function should traverse every node in the DOM. Use recursion.
 // On each node, call func(node).
+function walkTheDOM(node, func)
